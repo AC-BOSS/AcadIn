@@ -22,7 +22,7 @@ export default function Login() {
         e.preventDefault();
         dispatch({ type: "LOGIN_START" });
         try {
-            const res = await axios.post("http://localhost:5000/auth/login", { email: email.current.value, password: password.current.value });
+            const res = await axios.post("https://acadin.herokuapp.com/auth/login", { email: email.current.value, password: password.current.value });
             // console.log(res);
             dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
             navigate('/');

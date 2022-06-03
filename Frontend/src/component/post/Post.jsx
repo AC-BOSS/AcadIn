@@ -38,11 +38,11 @@ function element( ){
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`http://localhost:5000/user/${post.userId}`);
+      const res = await axios.get(`https://acadin.herokuapp.com/user/${post.userId}`);
       setUser(res.data);
     };
     const fetchComments = async () => {
-      const res = await axios.get(`http://localhost:5000/posts/comment/${postId}`);
+      const res = await axios.get(`https://acadin.herokuapp.com/posts/comment/${postId}`);
       // console.log(res.data);
       setCommentList(res.data);
     }
@@ -52,7 +52,7 @@ function element( ){
 
   const likeHandler = () => {
     try {
-      axios.put("http://localhost:5000/posts/" + post._id + "/like", { userId: currentUser._id });
+      axios.put("https://acadin.herokuapp.com/posts/" + post._id + "/like", { userId: currentUser._id });
     } catch (err) {}
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
@@ -69,7 +69,7 @@ function element( ){
         postId: id,
         comment: commentData
       }
-      await axios.put("http://localhost:5000/posts/comment", body);
+      await axios.put("https://acadin.herokuapp.com/posts/comment", body);
       setCommentList([...commentList, {username: currentUser.username, comment: commentData}]);
       setCommentData("");
     } catch (error) {

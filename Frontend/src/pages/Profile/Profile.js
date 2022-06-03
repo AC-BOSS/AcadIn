@@ -37,11 +37,11 @@ export default function Profile() {
 
     useEffect(async () => {
         if (!id) return;
-        const res = await axios.get(`http://localhost:5000/user/${id}`);
+        const res = await axios.get(`https://acadin.herokuapp.com/user/${id}`);
         
         setUser(res.data);
 
-        const followingList = await axios.get(`http://localhost:5000/user/friends/${id}`);
+        const followingList = await axios.get(`https://acadin.herokuapp.com/user/friends/${id}`);
        
         setFollowings(followingList.data);
         setFollowed(currentUser.followings.includes(id));
@@ -60,14 +60,14 @@ export default function Profile() {
             //   currentUser.profilePicture = fileName;
             //   console.log(newPost);
             try {
-                await axios.post("http://localhost:5000/upload", data);
+                await axios.post("https://acadin.herokuapp.com/upload", data);
             } catch (err) {
                 console.log(err);
             }
 
             try {
                 const body = { userId: currentUser._id, profilePicture: fileName }
-                const res = await axios.put("http://localhost:5000/user/updatePic", body);
+                const res = await axios.put("https://acadin.herokuapp.com/user/updatePic", body);
                 if(res.status === 200) {
                     setUser({ ...user, profilePicture: fileName });
                     dispatch({type: "UPDATE_DP", payload: fileName});
@@ -83,7 +83,7 @@ export default function Profile() {
     const updateUser = async () => {
        
         const body = { userId: currentUser._id, username: username.current.value, bio: bio.current.value, education: education.current.value, experience: experience.current.value };
-        const res = await axios.put(`http://localhost:5000/user/${id}/updatebio`, body);
+        const res = await axios.put(`https://acadin.herokuapp.com/user/${id}/updatebio`, body);
         
         setUser(res.data);
     }
@@ -92,12 +92,12 @@ export default function Profile() {
         try {
             const body = { userId: currentUser._id };
             if (followed) {
-                const res = await axios.put(`http://localhost:5000/user/${id}/unfollow`, body);
+                const res = await axios.put(`https://acadin.herokuapp.com/user/${id}/unfollow`, body);
                 if (res.status === 200)
                     dispatch({ type: "UNFOLLOW", payload: id });
                 
             } else {
-                const res = await axios.put(`http://localhost:5000/user/${id}/follow`, body);
+                const res = await axios.put(`https://acadin.herokuapp.com/user/${id}/follow`, body);
                 if (res.status === 200)
                     dispatch({ type: "FOLLOW", payload: id });
                 

@@ -34,11 +34,11 @@ export default function Share(props) {
       newPost.img = fileName;
       // console.log(newPost);
       try {
-        await axios.post("http://localhost:5000/upload", data);
+        await axios.post("https://acadin.herokuapp.com/upload", data);
       } catch (err) {}
     }
     try {
-      await axios.post("http://localhost:5000/posts", newPost);
+      await axios.post("https://acadin.herokuapp.com/posts", newPost);
       // window.location.reload();
       setDesc("");
       props.onSubmit();

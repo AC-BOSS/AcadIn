@@ -26,7 +26,7 @@ export default function Register() {
             password: password.current.value
         };
         try {
-            const res = await axios.post("http://localhost:5000/auth/register", user);
+            const res = await axios.post("https://acadin.herokuapp.com/auth/register", user);
             
             navigate("/login");
         } catch (error) {

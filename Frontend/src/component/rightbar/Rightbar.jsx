@@ -11,7 +11,7 @@ export default function Rightbar() {
   useEffect(async () => {
     if (!currentUser) return;
 
-    const followingList = await axios.get(`http://localhost:5000/user/friends/${currentUser._id}`);
+    const followingList = await axios.get(`https://acadin.herokuapp.com/user/friends/${currentUser._id}`);
     // console.log(followingList.data);
     setFollowings(followingList.data);
   }, [currentUser]);

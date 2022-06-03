@@ -32,7 +32,7 @@ export default function Messenger() {
     };
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
+    socket.current = io("https://acadinsocketio.herokuapp.com/");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -61,7 +61,7 @@ export default function Messenger() {
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/conversations/" + user._id);
+        const res = await axios.get("https://acadin.herokuapp.com/conversations/" + user._id);
         
         setConversations(res.data);
       } catch (err) {
@@ -70,7 +70,7 @@ export default function Messenger() {
     };
     const getFriends = async () => {
       try {
-        const followingList = await axios.get(`http://localhost:5000/user/friends/${user._id}`);
+        const followingList = await axios.get(`https://acadin.herokuapp.com/user/friends/${user._id}`);
       
         setFollowings(followingList.data);
       } catch (error) {
@@ -86,7 +86,7 @@ export default function Messenger() {
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/messages/" + currentChat._id);
+        const res = await axios.get("https://acadin.herokuapp.com/messages/" + currentChat._id);
         // console.log(res.data);
         setMessages(res.data);
       } catch (err) {
@@ -116,7 +116,7 @@ export default function Messenger() {
     });
 
     try {
-      const res = await axios.post("http://localhost:5000/messages", message);
+      const res = await axios.post("https://acadin.herokuapp.com/messages", message);
       // console.log(res.data);
       setMessages([...messages, res.data]);
       setNewMessage("");
@@ -130,7 +130,7 @@ export default function Messenger() {
       receiverId: id
     }
     try {
-      const res = await axios.post("http://localhost:5000/conversations", body);
+      const res = await axios.post("https://acadin.herokuapp.com/conversations", body);
       setConversations([...conversations, res.data]);
       setOpen(false);
     } catch (error) {

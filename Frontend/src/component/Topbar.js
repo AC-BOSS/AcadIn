@@ -17,7 +17,7 @@ export default function Topbar() {
         setAnchorEl(null);
     };
     const handleClick = (event) => {
-        axios.get(`http://localhost:5000/user/search?username=${query.current.value}`)
+        axios.get(`https://acadin.herokuapp.com/user/search?username=${query.current.value}`)
         .then((res) => {
             // console.log(res.data);
             setUsers(res.data);

@@ -9,7 +9,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
 
   useEffect(() => {
     const getFriends = async () => {
-      const res = await axios.get("http://localhost:5000/user/friends/" + currentId);
+      const res = await axios.get("https://acadin.herokuapp.com/user/friends/" + currentId);
       setFriends(res.data);
     };
 
